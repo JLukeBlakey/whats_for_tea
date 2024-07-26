@@ -1,0 +1,10 @@
+- convert to flag:
+  - oddbox
+  - recipients
+  - recipe file
+  - regulars
+
+- __main__
+- virtualenv
+
+- move to nomad
