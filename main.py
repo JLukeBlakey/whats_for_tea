@@ -5,7 +5,6 @@ import random
 import smtplib
 from email.message import EmailMessage
 import requests
-from html.parser import HTMLParser
 from dotenv import dotenv_values
 from dotenv import load_dotenv
 import os
@@ -64,27 +63,6 @@ def email(content):
         mail.quit
 
 
-class oddbox_html_parser(HTMLParser):
-    def handle_data(self, data):
-        oddbox_data.append(str.lower(data))
-
-
-def oddbox(food):
-    oddbox_html = requests.get("https://www.oddbox.co.uk/box-contents2")
-    parser = oddbox_html_parser()
-    parser.feed(oddbox_html.text)
-
-    if food == "veg":
-        items = oddbox_data[oddbox_data.index("small") + 1]
-    elif food == "fruit":
-        items = oddbox_data[oddbox_data.index("small") + 2]
-
-    items = items.strip(".*")
-#    items = items.split(sep=", ")
-
-    return items
-
-
 def main():
     content = kristoff_open \
           + create_meal_plan() \
@@ -92,8 +70,6 @@ def main():
           + create_shopping_list(meals) \
           + "\nDon't forget the regulars!\n" \
           + regulars.read() \
-          + "\nThis is what oddbox is delivering this week:" + "\n" \
-          + "Veg: {}\n".format(oddbox("veg")) \
           + "\nKristoff out."
 
     email(content)
