@@ -56,7 +56,7 @@ def email(content):
         msg = EmailMessage()
         msg.set_content(content)
         msg["Subject"] = "Weekly Shop"
-        msg["From"] = "kristoff@cyclingpenguin.uk"
+        msg["From"] = "kristoff@jlukeblakey.uk"
         msg["To"] = recipients[address]
         mail = smtplib.SMTP(smtp_ip)
         mail.send_message(msg)
